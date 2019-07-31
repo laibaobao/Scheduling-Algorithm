@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="assets/fonts/feather/feather.min.css">
+    <link rel="stylesheet" href="assets/libs/highlight.js/styles/vs2015.css">
+    <link rel="stylesheet" href="assets/libs/quill/dist/quill.core.css">
+    <link rel="stylesheet" href="assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="assets/libs/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Theme CSS -->
+
+    <link rel="stylesheet" href="assets/css/theme.min.css" id="stylesheetLight">
+
+    <link rel="stylesheet" href="assets/css/theme-dark.min.css" id="stylesheetDark">
+
+
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/chart.js/dist/Chart.min.js"></script>
+    <script src="assets/libs/chart.js/Chart.extension.min.js"></script>
+    <script src="assets/libs/highlightjs/highlight.pack.min.js"></script>
+    <script src="assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="assets/libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="assets/libs/list.js/dist/list.min.js"></script>
+    <script src="assets/libs/quill/dist/quill.min.js"></script>
+    <script src="assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="assets/libs/select2/dist/js/select2.min.js"></script>
+
+    <script src="JS/util.js"></script>
+
+
+    <title>磁盘调度</title>
+
+</head>
+<body style="display: block;">
+<!-- NAVIGATION
+    ================================================== -->
+
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light" id="sidebar">
+    <div class="container-fluid">
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="trace.html">
+            <img src="assets/img/firefox.svg" class="navbar-brand-img
+            mx-auto" alt="...">
+        </a>
+
+        <!-- User (xs) -->
+        <div class="navbar-user d-md-none">
+
+            <!-- Dropdown -->
+            <div class="dropdown">
+
+                <!-- Toggle -->
+                <a href="#!" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm avatar-online">
+                        <img src="assets/img/avatars/profiles/rsky_.png" class="avatar-img rounded-circle" alt="...">
+                    </div>
+                </a>
+
+                <!-- Menu -->
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+                    <a href="profile-posts.html" class="dropdown-item">用户资料</a>
+                    <a href="settings.html" class="dropdown-item">设置</a>
+                    <hr class="dropdown-divider">
+                    <a href="sign-in.html" class="dropdown-item">注销</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidebarCollapse">
+
+            <!-- Form -->
+            <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="搜索" aria-label="Search">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="fe fe-search"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Navigation -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#sidebarDashboards" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarDashboards">
+                        <i class="fe fe-home"></i> 磁盘调度
+                    </a>
+                    <div class="collapse show" id="sidebarDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="trace.html" class="nav-link">
+                                    先来先服务
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="sortpath.html" class="nav-link ">
+                                    最短路径 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="lift.html" class="nav-link ">
+                                    电梯算法 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="scanner.html" class="nav-link ">
+                                    循环扫描 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="n-step.html" class="nav-link ">
+                                    N步扫描 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="fscan.html" class="nav-link ">
+                                    队列扫描 </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="nav-link" href="#sidebarprocess" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarprocess">
+                        <i class="fe fe-trending-up"></i>进程调度
+                    </a>
+                    <div class="collapse show" id="sidebarprocess">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="pc/first.html" class="nav-link">
+                                    先来先服务算法
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pc/HRR.html" class="nav-link ">
+                                    最高响应比优先算法 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pc/turning.html" class="nav-link ">
+                                    轮转法 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pc/shortwork.html" class="nav-link ">
+                                    短作业优先算法 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pc/Hpriority.html" class="nav-link ">
+                                    高优先权算法 </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pc/Mutiback.html" class="nav-link ">
+                                    多级反馈算法 </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+            </ul>
+
+            <!-- Divider -->
+            <hr class="navbar-divider my-3">
+
+
+
+            <!-- Push content down -->
+            <div class="mt-auto"></div>
+
+        </div> <!-- / .navbar-collapse -->
+
+    </div>
+</nav>
+<div class="main-content">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"></li>
+        </ol>
+    </nav>
+
+    <div class="header pb-5">
+        <div class="container-fluid">
+
+            <div class="alert alert-primary" role="alert">
+                FSCAN 算法
+            </div>
+
+            <div class="chart">
+                <canvas id="myChart" width=auto height=auto></canvas>
+            </div>
+
+            <input id="nv" class="form-control" type="text" placeholder="请输入当前磁道号"></input>
+            <input id="dir"  class="form-control" type="text" placeholder="请输入当前移动臂的移动的方向 （1表示向内 ，0表示向外）"></input>
+            <button id="eok" class="btn-info">确定</button>
+            </br>
+            <input id="wait"  class="form-control" type="text" placeholder="请输入下一组队列（磁道号用‘,’号隔开）"></input>
+            <button id="ok" class="btn-info">确定</button>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+
+    Chart.defaults.global.elements.line.tension = 0;
+    var ctx = document.getElementById('myChart');
+
+    /*等待队列数据*/
+    var wait;
+
+
+
+    /*表格数据*/
+    var store =localStorage.sitename;
+    var data = store.split(',');
+    data.map(Number);
+    formatNumber(data);
+    console.log(data);
+
+    line(data);
+    /*电梯算法*/
+    function Ele(){
+
+        console.log("==============")
+        sum = 0;
+        dir = Number($("#dir").val());
+
+        now = $("#nv").val();
+        console.log("dir = "+dir)
+        console.log(typeof now)
+        console.log("now = "+now)
+
+        order = data;
+
+        order.push(now);
+        order = order.sort(sortNumber);
+
+        console.log(order[0]);
+
+
+        length = order.length - 1;
+        console.log(order[length]);
+        //减小的方向
+        if(dir==1){
+
+            if(now>=order[length]){
+                order.sort(resortNumber);
+                sum+=order[length]-order[0];
+            }else {
+                if (now <= order[0]) {
+
+                    sum += order[length] - order[0];
+                } else {
+                    //先变小后变大
+
+                    if (order[0] < now && now < order[length]) {
+                        mid = order.indexOf(now);
+
+                        sum += order[mid] - order[0];
+                        sum += order[length] - order[0];
+
+                        tmp1 = order.slice(0, mid+1).sort(resortNumber);
+                        console.log(tmp1.toString());
+                        tmp2 = order.slice(mid+1);
+                        console.log(tmp2.toString());
+                        order = tmp1 + ',' + tmp2;
+                        console.log(order);
+
+                        order = order.split(',');
+                        order.map(Number);
+                    }
+                }
+            }
+
+        }
+        else{
+
+            console.log(order[length]);
+            if(now>=order[length]){
+                order.sort(resortNumber);
+                sum+=order[length]-order[0];
+            }
+            else {
+
+                console.log(now <= order[0])
+
+                if (now <= order[0]) {
+                    sum += order[length] - order[0];
+                } else {
+                    //先变大后变小
+
+                    if (order[0] < now && now < order[length]) {
+                        mid = order.indexOf(now);
+
+                        sum += order[mid] - order[0];
+                        sum += order[length] - order[0];
+
+                        tmp1 = order.slice(0, mid).sort(resortNumber);
+                        console.log(tmp1.toString());
+                        tmp2 = order.slice(mid);
+                        console.log(tmp2.toString());
+                        order = tmp2 + ',' + tmp1;
+                        console.log(order);
+                        order = order.split(',');
+                        order.map(Number);
+
+                    }
+                }
+            }
+
+        }
+        if(typeof order=="String")
+            order = order.split(',');
+        formatNumber(order);
+        console.log("order="+order.toString());
+        data = order;
+        console.log(data);
+    };
+
+    $("#eok").click(function(){
+
+        Ele();
+         line(data);
+        alert("总道数 = "+ sum.toString());
+    });
+    $("#ok").click(function(){
+
+        wait = $("#wait").val();
+        console.log(typeof wait[0]);
+        wait  = $("#wait").val().split('，');
+        console.log(wait);
+        formatNumber(wait);
+        console.log(wait);
+        // Ele();
+        line(wait);
+        // alert("总道数 = "+ sum.toString());
+    });
+
+
+
+</script>
+
+</body>
+
+
+</html>
